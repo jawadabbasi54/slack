@@ -49,7 +49,7 @@ def notifyBuild(String buildStatus = 'STARTED') {
     colorCode = '#00FF00'
   } else {
     color = 'RED'
-    colorCode = '#FF0000'
+    colorCodes = '#FF0000'
   }
 
   // Send notifications
