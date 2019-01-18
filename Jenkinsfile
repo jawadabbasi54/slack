@@ -1,5 +1,9 @@
 node {
-    def slackResponse = slackSend(channel: "builds", message: "Here is the primary message")
-    slackSend(channel: slackResponse.threadId, message: "Thread reply #1")
-    slackSend(channel: slackResponse.threadId, message: "Thread reply #2")
+    def slackResponse = slackSend(channel: "builds", message: "Started build")
+    slackSend(channel: slackResponse.threadId, message: "Build still in progress")
+    slackSend(
+        channel: slackResponse.threadId,
+        replyBroadcast: true,
+        message: "Build failed. Broadcast to channel for better visibility."
+    )
 }
