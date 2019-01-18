@@ -1,4 +1,5 @@
 node {
+sfsfa
     try {
         notifyBuild('STARTED')
 
@@ -49,7 +50,7 @@ def notifyBuild(String buildStatus = 'STARTED') {
     colorCode = '#00FF00'
   } else {
     color = 'RED'
-    colorCodes = '#FF0000'
+    colorCode = '#FF0000'
   }
 
   // Send notifications
