@@ -1,26 +1,9 @@
-pipeline {
-  agent any
-  stages {
-    stage ('Start') {
-      steps {
-        // send build started notifications
-        slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-
-
-      
-      }
-    }
-    /* ... unchanged ... */
-  }
-  post {
-    success {
-      slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-
-    }
-
-    failure {
-      slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-
-    }
-  }
+node {
+    def slackResponse = slackSend(channel: "builds", message: "Started build")
+    slackSend(channel: slackResponse.threadId, message: "Build still in progress")
+    slackSend(
+        channel: slackResponse.threadId,
+        replyBroadcast: true,
+        message: "Build failed. Broadcast to channel for better visibility."
+    )
 }
