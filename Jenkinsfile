@@ -1,5 +1,5 @@
 pipeline {
-  /* ... unchanged ... */
+  agent any
   stages {
     stage ('Start') {
       steps {
